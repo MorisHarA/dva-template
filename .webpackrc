@@ -1,0 +1,21 @@
+{
+  "extraBabelPlugins": [
+    "transform-decorators-legacy",
+    ["import", { "libraryName": "antd-mobile", "style": true }]
+  ],
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr"
+      ]
+    }
+  },
+  "publicPath": "/",
+  "theme": "./src/theme.js",
+  "browserslist": [
+    "iOS >= 8",
+    "Android >= 4.1"
+  ],
+  "proxy": {
+  }
+}

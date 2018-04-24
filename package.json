@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "cross-env ESLINT=none roadhog server",
+    "build": "cross-env ESLINT=none roadhog build",
+    "lint": "eslint --ext .js src test",
+    "lint:fix": "eslint --ext .js src test --fix",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0-beta.44",
+    "dva-loading": "^1.0.4",
+    "dva": "^2.2.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "antd-mobile": "^2.1.8",
+    "query-string": "^5.1.1",
+    "fastclick": "^1.0.6",
+    "prop-types": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-plugin-dva-hmr": "^0.3.2",
+    "eslint": "^4.14.0",
+    "eslint-config-umi": "^0.1.1",
+    "eslint-plugin-flowtype": "^2.34.1",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-compat": "^2.2.0",
+    "eslint-plugin-html": "^4.0.2",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.12.0",
+    "redbox-react": "^1.4.3",
+    "roadhog": "^2.0.0",
+    "mockjs": "^1.0.1-beta3",
+    "roadhog-api-doc": "^1.0.0"
+  }
+}

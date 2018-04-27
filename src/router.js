@@ -1,6 +1,7 @@
-import React, { createElement } from 'react';
-import { Route, Switch, Redirect, routerRedux } from 'dva/router';
+import React from 'react';
 import dynamic from 'dva/dynamic';
+import { Route, Switch, Redirect, routerRedux } from 'dva/router';
+import { dynamicWrapper } from './utils/utils';
 import Error from './components/Error';
 
 dynamic.setDefaultLoadingComponent(() => {
@@ -8,29 +9,6 @@ dynamic.setDefaultLoadingComponent(() => {
 });
 
 const { ConnectedRouter } = routerRedux;
-
-const modelNotExisted = (app, model) => (
-  // eslint-disable-next-line
-  !app._models.some(({ namespace }) => {
-    return namespace === model.substring(model.lastIndexOf('/') + 1);
-  })
-);
-
-const dynamicWrapper = (app, models, component) => {
-  // () => import()
-  return dynamic({
-    app,
-    models: () => models.filter(
-      model => modelNotExisted(app, model)).map(m => import(`../models/${m}.js`)
-    ),
-    component: () => {
-      return component().then((raw) => {
-        const Component = raw.default || raw;
-        return props => createElement(Component, props);
-      });
-    },
-  });
-};
 
 function RouterConfig({ history, app }) {
   // route config

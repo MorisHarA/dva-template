@@ -44,25 +44,25 @@ function request(url, options) {
     .catch(err => ({ err }));
 }
 
-export const get = (url, params) => {
+request.get = (url, params) => {
   return request(params ? `${url}?${queryString.stringify(params)}` : url);
 };
 
-export const post = (url, body) => {
+request.post = (url, body) => {
   return request(url, {
     method: 'POST',
     body,
   });
 };
 
-export const put = (url, body) => {
+request.put = (url, body) => {
   return request(url, {
     method: 'PUT',
     body,
   });
 };
 
-export const delete = (url, body) => {
+request.deletes = (url, body) => {
   return request(url, {
     method: 'DELETE',
     body,

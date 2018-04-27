@@ -1,3 +1,4 @@
 import React from 'react';
 
-export default () => <div>page not found</div>
+export default () => <div>page not found</div>;
+

@@ -10,6 +10,27 @@ dynamic.setDefaultLoadingComponent(() => {
 
 const { ConnectedRouter } = routerRedux;
 
+let devRoute = {};
+
+const routeFactory = (path) => {
+  const context = require.context(path, true, /\.js$/);
+  return context.keys().reduce((r, k) => {
+    return {
+      ...r,
+      [k.slice(1, -4).toLowerCase()]: {
+        component: context(k).default,
+      },
+    };
+  }, {});
+};
+
+if (process.env.NODE_ENV !== 'production') {
+  devRoute = {
+    ...routeFactory('./routes/'),
+    ...routeFactory('./components/'),
+  };
+}
+
 function RouterConfig({ history, app }) {
   // route config
   const route = {
@@ -21,7 +42,7 @@ function RouterConfig({ history, app }) {
     <ConnectedRouter history={history}>
       <Switch>
         <Redirect exact from="/" to="example" />
-        {Object.keys(route).map(path => (
+        {Object.keys(process.env.NODE_ENV === 'production' ? route : devRoute).map(path => (
           <Route path={path} exact component={route[path].component} />
         ))}
         <Route component={Error} />
